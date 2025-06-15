@@ -1,31 +1,88 @@
+# Feedback Application Backend
 
-## Начало работы
+Бэкенд-часть приложения для учета и анализа обратной связи преподавателей об учащихся.
 
-### Необходимые компоненты
+## Технологии
 
-- Node.js (рекомендуется версия 14 или выше)
-- MongoDB Compass
+- Node.js
+- Express
+- TypeScript
+- MongoDB с Mongoose
+- JWT для аутентификации
 
-Установите зависимости:
-   ```bash
-   cd FeedbackApp
-   npm install
-   cd FeedbackApp-Backend
+## Структура проекта
+
+```
+FeedbackApp-Backend/
+  ├── src/                    # Исходный код
+  │   ├── controllers/        # Контроллеры для обработки запросов
+  │   ├── middlewares/        # Промежуточное ПО (аутентификация и т.д.)
+  │   ├── models/             # Mongoose модели данных
+  │   ├── routes/             # Маршруты API
+  │   └── index.ts            # Точка входа приложения
+  ├── .env                    # Файл с переменными окружения
+  ├── package.json            # Зависимости и скрипты проекта
+  ├── tsconfig.json           # Конфигурация TypeScript
+  └── README.md               # Документация проекта
+```
+
+## Запуск проекта
+
+### Требования
+
+- Node.js (версия 14 или выше)
+- MongoDB (локально или в облаке)
+
+### Установка
+
+1. Клонировать репозиторий
+2. Установить зависимости:
+   ```
    npm install
    ```
+3. Создать файл `.env` с переменными окружения:
+   ```
+   PORT=5000
+   MONGODB_URI=mongodb://localhost:27017/feedback-app
+   JWT_SECRET=your_secret_key
+   JWT_EXPIRES_IN=7d
+   ```
 
-### Запуск на устройстве Android
+### Запуск для разработки
 
-Через Expo Go (самый простой)
+```
+npm run dev
+```
 
-1. Установите приложение Expo Go из Google Play Store на ваше Android-устройство.
-2. Убедитесь, что ваш компьютер и телефон находятся в одной сети Wi-Fi.
-3. Через командную строку посмотрите свой IP-адрес командой `ipconfig` (для Windows) или `ifconfig` (для macOS/Linux) IPv4.
-4. Передайте IP-адрес в переменную `API_URL` в файле `src/services/api.ts` в этой строке - export const API_URL = 'http://*ТВОЙ IP*:5000/api';.
-5. Запустите проект командой `npm start`.
-6. Убедитесь, что установлен MongoDB Compass.
-7. Запустите серверную часть проекта командой `npm run dev` в папке `FeedbackApp-Backend`.
-8. На телефоне откройте приложение Expo Go.
-9. Отсканируйте QR-код, который отображается в терминале или в браузере, с помощью приложения Expo Go.
-10. Приложение автоматически загрузится и запустится на вашем устройстве.
+### Сборка и запуск для production
 
+```
+npm run build
+npm start
+```
+
+## API Endpoints
+
+### Аутентификация
+
+- `POST /api/auth/register` - Регистрация нового пользователя
+- `POST /api/auth/login` - Вход пользователя
+
+### Студенты
+
+- `GET /api/students` - Получение всех студентов
+- `GET /api/students/group/:group` - Получение студентов по группе
+- `GET /api/students/:id` - Получение студента по ID
+- `POST /api/students` - Создание нового студента
+- `PUT /api/students/:id` - Обновление данных студента
+- `DELETE /api/students/:id` - Удаление студента
+
+### Отзывы
+
+- `GET /api/feedback` - Получение всех отзывов
+- `GET /api/feedback/teacher/:teacherId` - Получение отзывов по ID преподавателя
+- `GET /api/feedback/student/:studentId` - Получение отзывов по ID студента
+- `GET /api/feedback/group/:group` - Получение отзывов по группе
+- `POST /api/feedback` - Создание нового отзыва
+- `PUT /api/feedback/:id` - Обновление отзыва
+- `DELETE /api/feedback/:id` - Удаление отзыва 
