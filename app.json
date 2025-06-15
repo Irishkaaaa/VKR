@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "FeedbackApp",
+    "slug": "FeedbackApp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#ffffff",
+          "sounds": ["./assets/notification.wav"],
+          "mode": "production",
+          "androidCollapsedTitle": "Новые уведомления",
+          "iosDisplayInForeground": true
+        }
+      ],
+      "expo-localization"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.feedbackapp.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera",
+        "NSPhotoLibraryUsageDescription": "Allow $(PRODUCT_NAME) to access your photos",
+        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to access your microphone",
+        "NSLocationWhenInUseUsageDescription": "Allow $(PRODUCT_NAME) to use your location"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.feedbackapp.app",
+      "permissions": [
+        "RECEIVE_BOOT_COMPLETED",
+        "FOREGROUND_SERVICE",
+        "WAKE_LOCK"
+      ],
+      "googleServicesFile": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
